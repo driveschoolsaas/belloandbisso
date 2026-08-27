@@ -1,11 +1,22 @@
 import Link from "next/link";
 
 const programs = [
-  { slug:"education-des-filles", tag:"Éducation des filles", title:"Apprendre, imaginer, réussir.", text:"Soutenir la scolarisation des jeunes filles et créer des centres éducatifs dédiés à l’alphabétisation et au développement des compétences.", image:"/images/education-program.png" },
-  { slug:"protection-et-sante", tag:"Protection & santé", title:"Prendre soin, tout simplement.", text:"Protéger les jeunes filles et les personnes âgées, et sensibiliser aux risques liés au mariage précoce, notamment la fistule et l’abandon.", image:"/images/health-program.png" },
-  { slug:"autonomie-des-femmes", tag:"Autonomie des femmes", title:"Des communautés qui se mettent en mouvement.", text:"Promouvoir l’agrobusiness, l’élevage de lapins et d’autres activités agricoles pour créer des revenus durables pour les collectifs de femmes.", image:"/images/volunteers-banner.png" }
+  { slug:"jeunes-filles-education", tag:"Priorité 1 · Jeunes filles & éducation", title:"Une fille qui apprend transforme toute une génération.", text:"Maintien à l’école, alphabétisation, centres éducatifs de proximité, prévention du mariage précoce. Nous travaillons sur les obstacles réels - distance, coût des fournitures, charge domestique, pression familiale - plutôt que de dénoncer en bloc.", image:"/images/education-teaching.webp" },
+  { slug:"femmes-autonomisation", tag:"Priorité 2 · Femmes & autonomisation", title:"L’autonomie ne se distribue pas. Elle se construit.", text:"Maraîchage, transformation agricole, élevage de lapins, commerce et artisanat. Nous accompagnons des collectifs de femmes vers des revenus qui tiennent une fois notre appui terminé.", image:"/images/women-livestock.webp" },
+  { slug:"dignite-solidarite", tag:"Priorité 3 · Dignité & solidarité", title:"La dignité n’a ni âge ni condition sociale.", text:"Accompagnement des femmes âgées isolées ou mises à l’écart, hébergement et protection des personnes sans abri, soutien aux familles en rupture, transmission de la parole des aînés.", image:"/images/elders-listening.webp" }
 ];
 
-export const metadata = { title: "Nos actions | Bello et Bisso" };
+export const metadata = {
+  title: "Nos priorités",
+  description: "Éducation des jeunes filles, autonomisation économique des femmes, dignité des personnes vulnérables : les trois priorités de BBCF dans le Grand-Nord du Cameroun."
+};
 
-export default function ActionsPage() { return <main className="page-shell"><section className="page-intro actions-intro"><p className="eyebrow">Nos actions</p><h1>Des réponses ancrées dans <em>la vie quotidienne.</em></h1><p>De l’éducation des filles à l’autonomie économique des femmes, nos actions accompagnent les personnes là où les besoins sont les plus importants.</p></section><section className="program-list section-wide">{programs.map((program,index)=><article className="program-row" key={program.tag}><div className="program-image"><img src={program.image} alt="" /><span>0{index+1}</span></div><div><p className="eyebrow">{program.tag}</p><h2>{program.title}</h2><p>{program.text}</p><Link className="text-link" href={`/actions/${program.slug}`}>Découvrir cette action <span>→</span></Link></div></article>)}</section><section className="impact-callout"><div><span>✦</span><h2>Vous avez une idée ou un projet à partager ?</h2></div><Link className="button button-ink" href="/contact">Parlons-en <span>→</span></Link></section></main>; }
+export default function ActionsPage() {
+  return <main className="page-shell">
+    <section className="page-intro actions-intro"><p className="eyebrow">Nos priorités</p><h1>Trois priorités. <em>Rien d’autre.</em></h1><p>Toutes nos actions se rattachent à l’une de ces trois priorités. Un projet qui n’en relève d’aucune n’est pas mené. C’est cette discipline qui nous évite de nous disperser, et qui vous permet de savoir exactement où va votre soutien.</p></section>
+
+    <section className="program-list section-wide">{programs.map((program, index) => <article className="program-row" key={program.slug}><div className="program-image"><img src={program.image} alt="" /><span>0{index + 1}</span></div><div><p className="eyebrow">{program.tag}</p><h2>{program.title}</h2><p>{program.text}</p><Link className="text-link" href={`/actions/${program.slug}`}>Voir comment nous procédons <span>→</span></Link></div></article>)}</section>
+
+    <section className="impact-callout"><div><span>✦</span><h2>Vous connaissez une situation qui relève de l’une de ces priorités ?</h2></div><Link className="button button-ink" href="/demande-assistance">Nous la signaler <span>→</span></Link></section>
+  </main>;
+}
